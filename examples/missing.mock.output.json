@@ -1,0 +1,14 @@
+{
+  "status": "incomplete",
+  "reason": "missing_input",
+  "missing_fields": [
+    "target_seconds"
+  ],
+  "mode": "mock",
+  "script": null,
+  "trace": [],
+  "terminal": {
+    "status": "not_started",
+    "reason": "missing_input"
+  }
+}

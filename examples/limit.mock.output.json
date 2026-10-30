@@ -1,0 +1,94 @@
+{
+  "status": "incomplete",
+  "reason": "max_tool_calls",
+  "mode": "mock",
+  "request": {
+    "topic": "视频字幕",
+    "audience": "短视频创作者",
+    "platform": "短视频平台",
+    "target_seconds": 30.0,
+    "style": "清晰简洁",
+    "initial_script": null
+  },
+  "script": null,
+  "risks": [
+    "max_tool_calls"
+  ],
+  "terminal": {
+    "status": "completed",
+    "source": "scripted_mock",
+    "reason": "scripted_finish",
+    "tool_calls_executed": 1,
+    "max_tool_calls": 1
+  },
+  "trace": [
+    {
+      "step": 1,
+      "tool": "search_materials",
+      "arguments": {
+        "query": "视频字幕",
+        "reason": "检索主题素材"
+      },
+      "result": {
+        "ok": true,
+        "query": "视频字幕",
+        "materials": [
+          {
+            "id": "P01",
+            "title": "字幕功能介绍",
+            "topics": [
+              "字幕",
+              "短视频字幕",
+              "视频字幕",
+              "口播字幕",
+              "字幕工具",
+              "视频转文字"
+            ],
+            "search_terms": [
+              "字幕",
+              "短视频字幕",
+              "视频字幕",
+              "口播字幕",
+              "字幕工具"
+            ],
+            "facts": [
+              {
+                "id": "F01",
+                "text": "支持为视频添加字幕。",
+                "visual": "展示字幕编辑界面。"
+              },
+              {
+                "id": "F02",
+                "text": "支持调整字幕的字体样式。",
+                "visual": "展示字体样式设置界面。"
+              },
+              {
+                "id": "F03",
+                "text": "支持导出字幕文件。",
+                "visual": "展示字幕文件导出界面。"
+              }
+            ]
+          }
+        ],
+        "count": 1
+      },
+      "decision_basis": "检索主题素材",
+      "next_action": "estimate_duration"
+    },
+    {
+      "step": 2,
+      "tool": "estimate_duration",
+      "arguments": {
+        "script_json": "{\"title\": \"字幕功能介绍\", \"scenes\": [{\"source_id\": \"P01\", \"fact_id\": \"F01\", \"narration\": \"支持为视频添加字幕。\", \"subtitle\": \"支持为视频添加字幕。\", \"visual\": \"展示字幕编辑界面。\", \"duration_seconds\": 3}]}",
+        "reason": "估算引用素材的精简脚本"
+      },
+      "result": {
+        "ok": false,
+        "code": "max_tool_calls",
+        "message": "业务工具调用次数已达上限"
+      },
+      "decision_basis": "估算引用素材的精简脚本",
+      "next_action": "finish"
+    }
+  ]
+}
