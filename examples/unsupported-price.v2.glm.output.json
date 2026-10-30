@@ -1,0 +1,268 @@
+{
+  "status": "incomplete",
+  "reason": "missing_topic_evidence",
+  "mode": "glm",
+  "request": {
+    "topic": "字幕工具价格介绍",
+    "audience": "短视频创作者",
+    "platform": "短视频平台",
+    "target_seconds": 30.0,
+    "style": "清晰简洁",
+    "duration_tolerance": 0.2,
+    "initial_script": null
+  },
+  "script": null,
+  "previous_submissions": [],
+  "missing_information": [
+    {
+      "concept": "subtitle",
+      "aspect": "price"
+    }
+  ],
+  "risks": [
+    "missing_topic_evidence"
+  ],
+  "terminal": {
+    "status": "completed",
+    "reason": "completed",
+    "turns": 3,
+    "model": "glm-5.3-flash",
+    "reported_models": [
+      "glm-5.3-flash"
+    ],
+    "sdk_events": [
+      {
+        "type": "tool_request",
+        "tool_use_id": "call_215c683a9e964c2cac648875",
+        "message_id": "msg_2026103100261973f99ea9897c4bd9",
+        "tool": "mcp__video__search_materials",
+        "arguments": {
+          "query": "字幕工具价格介绍",
+          "reason": "按用户主题原文检索字幕工具价格相关素材"
+        }
+      },
+      {
+        "type": "tool_result",
+        "tool_use_id": "call_215c683a9e964c2cac648875",
+        "is_error": null
+      },
+      {
+        "type": "tool_request",
+        "tool_use_id": "call_45f68cd0361f4d55a31d8aaf",
+        "message_id": "msg_20261031002623d1978f08f9cc4596",
+        "tool": "mcp__video__search_materials",
+        "arguments": {
+          "query": "字幕工具 价格 收费 会员",
+          "reason": "改写查询补充检索字幕工具价格方面素材"
+        }
+      },
+      {
+        "type": "tool_result",
+        "tool_use_id": "call_45f68cd0361f4d55a31d8aaf",
+        "is_error": null
+      }
+    ],
+    "tool_calls_executed": 2,
+    "max_tool_calls": 16
+  },
+  "trace": [
+    {
+      "step": 1,
+      "tool": "search_materials",
+      "arguments": {
+        "query": "字幕工具价格介绍",
+        "reason": "按用户主题原文检索字幕工具价格相关素材"
+      },
+      "result": {
+        "ok": true,
+        "query": "字幕工具价格介绍",
+        "materials": [
+          {
+            "id": "P01",
+            "title": "字幕功能介绍",
+            "topics": [
+              "字幕",
+              "短视频字幕",
+              "视频字幕",
+              "口播字幕",
+              "字幕工具",
+              "视频转文字"
+            ],
+            "search_terms": [
+              "字幕",
+              "短视频字幕",
+              "视频字幕",
+              "口播字幕",
+              "字幕工具"
+            ],
+            "facts": [
+              {
+                "id": "F01",
+                "text": "支持为视频添加字幕。",
+                "visual": "展示字幕编辑界面。",
+                "aspects": [
+                  "feature"
+                ]
+              },
+              {
+                "id": "F02",
+                "text": "支持调整字幕的字体样式。",
+                "visual": "展示字体样式设置界面。",
+                "aspects": [
+                  "feature",
+                  "style"
+                ]
+              },
+              {
+                "id": "F03",
+                "text": "支持导出字幕文件。",
+                "visual": "展示字幕文件导出界面。",
+                "aspects": [
+                  "feature",
+                  "export"
+                ]
+              }
+            ],
+            "topic_patterns": [
+              [
+                [
+                  "视频",
+                  "影像",
+                  "影片",
+                  "画面"
+                ],
+                [
+                  "配",
+                  "添加",
+                  "加上",
+                  "加",
+                  "显示"
+                ],
+                [
+                  "文字",
+                  "文本",
+                  "字幕"
+                ]
+              ]
+            ],
+            "topic_concept": "subtitle"
+          }
+        ],
+        "count": 1,
+        "required_aspects": [
+          "price"
+        ],
+        "missing_information": [
+          {
+            "concept": "subtitle",
+            "aspect": "price"
+          }
+        ]
+      },
+      "decision_basis": "按用户主题原文检索字幕工具价格相关素材",
+      "model_message_id": "msg_2026103100261973f99ea9897c4bd9",
+      "tool_use_id": "call_215c683a9e964c2cac648875",
+      "next_action": "search_materials",
+      "next_action_relation": "different_model_message"
+    },
+    {
+      "step": 2,
+      "tool": "search_materials",
+      "arguments": {
+        "query": "字幕工具 价格 收费 会员",
+        "reason": "改写查询补充检索字幕工具价格方面素材"
+      },
+      "result": {
+        "ok": true,
+        "query": "字幕工具 价格 收费 会员",
+        "materials": [
+          {
+            "id": "P01",
+            "title": "字幕功能介绍",
+            "topics": [
+              "字幕",
+              "短视频字幕",
+              "视频字幕",
+              "口播字幕",
+              "字幕工具",
+              "视频转文字"
+            ],
+            "search_terms": [
+              "字幕",
+              "短视频字幕",
+              "视频字幕",
+              "口播字幕",
+              "字幕工具"
+            ],
+            "facts": [
+              {
+                "id": "F01",
+                "text": "支持为视频添加字幕。",
+                "visual": "展示字幕编辑界面。",
+                "aspects": [
+                  "feature"
+                ]
+              },
+              {
+                "id": "F02",
+                "text": "支持调整字幕的字体样式。",
+                "visual": "展示字体样式设置界面。",
+                "aspects": [
+                  "feature",
+                  "style"
+                ]
+              },
+              {
+                "id": "F03",
+                "text": "支持导出字幕文件。",
+                "visual": "展示字幕文件导出界面。",
+                "aspects": [
+                  "feature",
+                  "export"
+                ]
+              }
+            ],
+            "topic_patterns": [
+              [
+                [
+                  "视频",
+                  "影像",
+                  "影片",
+                  "画面"
+                ],
+                [
+                  "配",
+                  "添加",
+                  "加上",
+                  "加",
+                  "显示"
+                ],
+                [
+                  "文字",
+                  "文本",
+                  "字幕"
+                ]
+              ]
+            ],
+            "topic_concept": "subtitle"
+          }
+        ],
+        "count": 1,
+        "required_aspects": [
+          "price"
+        ],
+        "missing_information": [
+          {
+            "concept": "subtitle",
+            "aspect": "price"
+          }
+        ]
+      },
+      "decision_basis": "改写查询补充检索字幕工具价格方面素材",
+      "model_message_id": "msg_20261031002623d1978f08f9cc4596",
+      "tool_use_id": "call_45f68cd0361f4d55a31d8aaf",
+      "next_action": "finish",
+      "next_action_relation": "terminal"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "allowed_generic_titles": ["产品功能介绍"],
+  "forbidden_terms": ["最强", "第一", "绝对", "保证", "100%", "80%"],
+  "narration_characters_per_second": 4,
+  "minimum_scene_seconds": 1
+}

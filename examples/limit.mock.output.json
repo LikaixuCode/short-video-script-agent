@@ -8,9 +8,12 @@
     "platform": "短视频平台",
     "target_seconds": 30.0,
     "style": "清晰简洁",
+    "duration_tolerance": 0.2,
     "initial_script": null
   },
   "script": null,
+  "previous_submissions": [],
+  "missing_information": [],
   "risks": [
     "max_tool_calls"
   ],
@@ -55,31 +58,70 @@
               {
                 "id": "F01",
                 "text": "支持为视频添加字幕。",
-                "visual": "展示字幕编辑界面。"
+                "visual": "展示字幕编辑界面。",
+                "aspects": [
+                  "feature"
+                ]
               },
               {
                 "id": "F02",
                 "text": "支持调整字幕的字体样式。",
-                "visual": "展示字体样式设置界面。"
+                "visual": "展示字体样式设置界面。",
+                "aspects": [
+                  "feature",
+                  "style"
+                ]
               },
               {
                 "id": "F03",
                 "text": "支持导出字幕文件。",
-                "visual": "展示字幕文件导出界面。"
+                "visual": "展示字幕文件导出界面。",
+                "aspects": [
+                  "feature",
+                  "export"
+                ]
               }
-            ]
+            ],
+            "topic_patterns": [
+              [
+                [
+                  "视频",
+                  "影像",
+                  "影片",
+                  "画面"
+                ],
+                [
+                  "配",
+                  "添加",
+                  "加上",
+                  "加",
+                  "显示"
+                ],
+                [
+                  "文字",
+                  "文本",
+                  "字幕"
+                ]
+              ]
+            ],
+            "topic_concept": "subtitle"
           }
         ],
-        "count": 1
+        "count": 1,
+        "required_aspects": [
+          "feature"
+        ],
+        "missing_information": []
       },
       "decision_basis": "检索主题素材",
-      "next_action": "estimate_duration"
+      "next_action": "estimate_duration",
+      "next_action_relation": "execution_order_only"
     },
     {
       "step": 2,
       "tool": "estimate_duration",
       "arguments": {
-        "script_json": "{\"title\": \"字幕功能介绍\", \"scenes\": [{\"source_id\": \"P01\", \"fact_id\": \"F01\", \"narration\": \"支持为视频添加字幕。\", \"subtitle\": \"支持为视频添加字幕。\", \"visual\": \"展示字幕编辑界面。\", \"duration_seconds\": 3}]}",
+        "script_json": "{\"title\": \"字幕功能介绍\", \"scenes\": [{\"source_id\": \"P01\", \"fact_id\": \"F01\", \"narration\": \"支持为视频添加字幕。\", \"subtitle\": \"支持为视频添加字幕。\", \"visual\": \"展示字幕编辑界面。\", \"duration_seconds\": 9.93}, {\"source_id\": \"P01\", \"fact_id\": \"F02\", \"narration\": \"支持调整字幕的字体样式。\", \"subtitle\": \"支持调整字幕的字体样式。\", \"visual\": \"展示字体样式设置界面。\", \"duration_seconds\": 10.43}, {\"source_id\": \"P01\", \"fact_id\": \"F03\", \"narration\": \"支持导出字幕文件。\", \"subtitle\": \"支持导出字幕文件。\", \"visual\": \"展示字幕文件导出界面。\", \"duration_seconds\": 9.64}]}",
         "reason": "估算引用素材的精简脚本"
       },
       "result": {
@@ -88,7 +130,8 @@
         "message": "业务工具调用次数已达上限"
       },
       "decision_basis": "估算引用素材的精简脚本",
-      "next_action": "finish"
+      "next_action": "finish",
+      "next_action_relation": "terminal"
     }
   ]
 }

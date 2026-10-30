@@ -8,9 +8,12 @@
     "platform": "短视频平台",
     "target_seconds": 30.0,
     "style": "清晰简洁",
+    "duration_tolerance": 0.2,
     "initial_script": null
   },
   "script": null,
+  "previous_submissions": [],
+  "missing_information": [],
   "risks": [
     "tool_failure"
   ],
@@ -35,7 +38,8 @@
         "message": "search_materials 模拟失败"
       },
       "decision_basis": "检索主题素材",
-      "next_action": "finish"
+      "next_action": "finish",
+      "next_action_relation": "terminal"
     }
   ]
 }

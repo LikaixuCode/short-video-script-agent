@@ -1,0 +1,157 @@
+{
+  "status": "incomplete",
+  "reason": "missing_topic_evidence",
+  "mode": "mock",
+  "request": {
+    "topic": "视频转文字",
+    "audience": "短视频创作者",
+    "platform": "短视频平台",
+    "target_seconds": 15.0,
+    "style": "清晰简洁",
+    "duration_tolerance": 0.2,
+    "initial_script": null
+  },
+  "script": null,
+  "previous_submissions": [],
+  "missing_information": [
+    {
+      "concept": "subtitle",
+      "aspect": "transcription"
+    }
+  ],
+  "risks": [
+    "missing_topic_evidence"
+  ],
+  "terminal": {
+    "status": "completed",
+    "source": "scripted_mock",
+    "reason": "scripted_finish",
+    "tool_calls_executed": 2,
+    "max_tool_calls": 16
+  },
+  "trace": [
+    {
+      "step": 1,
+      "tool": "search_materials",
+      "arguments": {
+        "query": "视频转文字",
+        "reason": "检索主题素材"
+      },
+      "result": {
+        "ok": true,
+        "query": "视频转文字",
+        "materials": [],
+        "count": 0,
+        "required_aspects": [
+          "transcription"
+        ],
+        "missing_information": [
+          {
+            "concept": "subtitle",
+            "aspect": "transcription"
+          }
+        ]
+      },
+      "decision_basis": "检索主题素材",
+      "next_action": "search_materials",
+      "next_action_relation": "execution_order_only"
+    },
+    {
+      "step": 2,
+      "tool": "search_materials",
+      "arguments": {
+        "query": "字幕",
+        "reason": "按已识别的主题概念改写检索"
+      },
+      "result": {
+        "ok": true,
+        "query": "字幕",
+        "materials": [
+          {
+            "id": "P01",
+            "title": "字幕功能介绍",
+            "topics": [
+              "字幕",
+              "短视频字幕",
+              "视频字幕",
+              "口播字幕",
+              "字幕工具",
+              "视频转文字"
+            ],
+            "search_terms": [
+              "字幕",
+              "短视频字幕",
+              "视频字幕",
+              "口播字幕",
+              "字幕工具"
+            ],
+            "facts": [
+              {
+                "id": "F01",
+                "text": "支持为视频添加字幕。",
+                "visual": "展示字幕编辑界面。",
+                "aspects": [
+                  "feature"
+                ]
+              },
+              {
+                "id": "F02",
+                "text": "支持调整字幕的字体样式。",
+                "visual": "展示字体样式设置界面。",
+                "aspects": [
+                  "feature",
+                  "style"
+                ]
+              },
+              {
+                "id": "F03",
+                "text": "支持导出字幕文件。",
+                "visual": "展示字幕文件导出界面。",
+                "aspects": [
+                  "feature",
+                  "export"
+                ]
+              }
+            ],
+            "topic_patterns": [
+              [
+                [
+                  "视频",
+                  "影像",
+                  "影片",
+                  "画面"
+                ],
+                [
+                  "配",
+                  "添加",
+                  "加上",
+                  "加",
+                  "显示"
+                ],
+                [
+                  "文字",
+                  "文本",
+                  "字幕"
+                ]
+              ]
+            ],
+            "topic_concept": "subtitle"
+          }
+        ],
+        "count": 1,
+        "required_aspects": [
+          "transcription"
+        ],
+        "missing_information": [
+          {
+            "concept": "subtitle",
+            "aspect": "transcription"
+          }
+        ]
+      },
+      "decision_basis": "按已识别的主题概念改写检索",
+      "next_action": "finish",
+      "next_action_relation": "terminal"
+    }
+  ]
+}

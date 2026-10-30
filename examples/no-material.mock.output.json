@@ -8,9 +8,12 @@
     "platform": "短视频平台",
     "target_seconds": 30.0,
     "style": "清晰简洁",
+    "duration_tolerance": 0.2,
     "initial_script": null
   },
   "script": null,
+  "previous_submissions": [],
+  "missing_information": [],
   "risks": [
     "no_material"
   ],
@@ -33,10 +36,20 @@
         "ok": true,
         "query": "咖啡豆烘焙",
         "materials": [],
-        "count": 0
+        "count": 0,
+        "required_aspects": [
+          "feature"
+        ],
+        "missing_information": [
+          {
+            "concept": "unknown",
+            "aspect": "咖啡豆烘焙"
+          }
+        ]
       },
       "decision_basis": "检索主题素材",
-      "next_action": "finish"
+      "next_action": "finish",
+      "next_action_relation": "terminal"
     }
   ]
 }

@@ -1,0 +1,351 @@
+{
+  "status": "completed",
+  "reason": null,
+  "mode": "mock",
+  "request": {
+    "topic": "视频字幕",
+    "audience": "短视频创作者",
+    "platform": "短视频平台",
+    "target_seconds": 30.0,
+    "style": "清晰简洁",
+    "duration_tolerance": 0.2,
+    "initial_script": {
+      "title": "字幕功能介绍",
+      "scenes": [
+        {
+          "source_id": "P01",
+          "fact_id": "F01",
+          "narration": "支持为视频添加字幕。",
+          "subtitle": "支持为视频添加字幕。",
+          "visual": "展示字幕编辑界面。",
+          "duration_seconds": 8
+        },
+        {
+          "source_id": "P01",
+          "fact_id": "F02",
+          "narration": "支持调整字幕的字体样式。",
+          "subtitle": "支持调整字幕的字体样式。",
+          "visual": "展示字体样式设置界面。",
+          "duration_seconds": 8
+        },
+        {
+          "source_id": "P01",
+          "fact_id": "F03",
+          "narration": "支持导出字幕文件。",
+          "subtitle": "支持导出字幕文件。",
+          "visual": "展示字幕文件导出界面。",
+          "duration_seconds": 8
+        }
+      ]
+    }
+  },
+  "script": {
+    "script_id": "665f792b5d30e215e564233f8868d7eeba66742880dd2b73ae143347754e5217",
+    "title": "字幕功能介绍",
+    "scenes": [
+      {
+        "source_id": "P01",
+        "fact_id": "F01",
+        "narration": "支持为视频添加字幕。",
+        "subtitle": "支持为视频添加字幕。",
+        "visual": "展示字幕编辑界面。",
+        "duration_seconds": 9.93
+      },
+      {
+        "source_id": "P01",
+        "fact_id": "F02",
+        "narration": "支持调整字幕的字体样式。",
+        "subtitle": "支持调整字幕的字体样式。",
+        "visual": "展示字体样式设置界面。",
+        "duration_seconds": 10.43
+      },
+      {
+        "source_id": "P01",
+        "fact_id": "F03",
+        "narration": "支持导出字幕文件。",
+        "subtitle": "支持导出字幕文件。",
+        "visual": "展示字幕文件导出界面。",
+        "duration_seconds": 9.64
+      }
+    ],
+    "estimated_total_seconds": 30.0,
+    "citations": [
+      {
+        "scene": 1,
+        "source_id": "P01",
+        "fact_id": "F01",
+        "source_text": "支持为视频添加字幕。"
+      },
+      {
+        "scene": 2,
+        "source_id": "P01",
+        "fact_id": "F02",
+        "source_text": "支持调整字幕的字体样式。"
+      },
+      {
+        "scene": 3,
+        "source_id": "P01",
+        "fact_id": "F03",
+        "source_text": "支持导出字幕文件。"
+      }
+    ],
+    "risks": []
+  },
+  "previous_submissions": [],
+  "missing_information": [],
+  "risks": [],
+  "terminal": {
+    "status": "completed",
+    "source": "scripted_mock",
+    "reason": "scripted_finish",
+    "tool_calls_executed": 5,
+    "max_tool_calls": 16
+  },
+  "trace": [
+    {
+      "step": 1,
+      "tool": "search_materials",
+      "arguments": {
+        "query": "视频字幕",
+        "reason": "检索主题素材"
+      },
+      "result": {
+        "ok": true,
+        "query": "视频字幕",
+        "materials": [
+          {
+            "id": "P01",
+            "title": "字幕功能介绍",
+            "topics": [
+              "字幕",
+              "短视频字幕",
+              "视频字幕",
+              "口播字幕",
+              "字幕工具",
+              "视频转文字"
+            ],
+            "search_terms": [
+              "字幕",
+              "短视频字幕",
+              "视频字幕",
+              "口播字幕",
+              "字幕工具"
+            ],
+            "facts": [
+              {
+                "id": "F01",
+                "text": "支持为视频添加字幕。",
+                "visual": "展示字幕编辑界面。",
+                "aspects": [
+                  "feature"
+                ]
+              },
+              {
+                "id": "F02",
+                "text": "支持调整字幕的字体样式。",
+                "visual": "展示字体样式设置界面。",
+                "aspects": [
+                  "feature",
+                  "style"
+                ]
+              },
+              {
+                "id": "F03",
+                "text": "支持导出字幕文件。",
+                "visual": "展示字幕文件导出界面。",
+                "aspects": [
+                  "feature",
+                  "export"
+                ]
+              }
+            ],
+            "topic_patterns": [
+              [
+                [
+                  "视频",
+                  "影像",
+                  "影片",
+                  "画面"
+                ],
+                [
+                  "配",
+                  "添加",
+                  "加上",
+                  "加",
+                  "显示"
+                ],
+                [
+                  "文字",
+                  "文本",
+                  "字幕"
+                ]
+              ]
+            ],
+            "topic_concept": "subtitle"
+          }
+        ],
+        "count": 1,
+        "required_aspects": [
+          "feature"
+        ],
+        "missing_information": []
+      },
+      "decision_basis": "检索主题素材",
+      "next_action": "estimate_duration",
+      "next_action_relation": "execution_order_only"
+    },
+    {
+      "step": 2,
+      "tool": "estimate_duration",
+      "arguments": {
+        "script_json": "{\"title\": \"字幕功能介绍\", \"scenes\": [{\"source_id\": \"P01\", \"fact_id\": \"F01\", \"narration\": \"支持为视频添加字幕。\", \"subtitle\": \"支持为视频添加字幕。\", \"visual\": \"展示字幕编辑界面。\", \"duration_seconds\": 8}, {\"source_id\": \"P01\", \"fact_id\": \"F02\", \"narration\": \"支持调整字幕的字体样式。\", \"subtitle\": \"支持调整字幕的字体样式。\", \"visual\": \"展示字体样式设置界面。\", \"duration_seconds\": 8}, {\"source_id\": \"P01\", \"fact_id\": \"F03\", \"narration\": \"支持导出字幕文件。\", \"subtitle\": \"支持导出字幕文件。\", \"visual\": \"展示字幕文件导出界面。\", \"duration_seconds\": 8}]}",
+        "reason": "先检查用户提供的初稿"
+      },
+      "result": {
+        "ok": true,
+        "script_id": "0ee33a5d1cb7e7aa218128da5a76c0aa26d4dca7b73c0ef7b64846cd0248713d",
+        "scenes": [
+          {
+            "scene": 1,
+            "source_id": "P01",
+            "fact_id": "F01",
+            "requested_seconds": 8.0,
+            "minimum_seconds": 2.3,
+            "long_enough": true
+          },
+          {
+            "scene": 2,
+            "source_id": "P01",
+            "fact_id": "F02",
+            "requested_seconds": 8.0,
+            "minimum_seconds": 2.8,
+            "long_enough": true
+          },
+          {
+            "scene": 3,
+            "source_id": "P01",
+            "fact_id": "F03",
+            "requested_seconds": 8.0,
+            "minimum_seconds": 2.0,
+            "long_enough": true
+          }
+        ],
+        "total_seconds": 24.0,
+        "target_seconds": 30.0,
+        "minimum_target_seconds": 24.0,
+        "duration_tolerance": 0.2,
+        "over_by_seconds": 0.0,
+        "short_by_seconds": 0.0,
+        "within_target": true,
+        "estimate_method": "旁白按每秒 4 个字估算下限，镜头按填写时长精确求和"
+      },
+      "decision_basis": "先检查用户提供的初稿",
+      "next_action": "estimate_duration",
+      "next_action_relation": "execution_order_only"
+    },
+    {
+      "step": 3,
+      "tool": "estimate_duration",
+      "arguments": {
+        "script_json": "{\"title\": \"字幕功能介绍\", \"scenes\": [{\"source_id\": \"P01\", \"fact_id\": \"F01\", \"narration\": \"支持为视频添加字幕。\", \"subtitle\": \"支持为视频添加字幕。\", \"visual\": \"展示字幕编辑界面。\", \"duration_seconds\": 9.93}, {\"source_id\": \"P01\", \"fact_id\": \"F02\", \"narration\": \"支持调整字幕的字体样式。\", \"subtitle\": \"支持调整字幕的字体样式。\", \"visual\": \"展示字体样式设置界面。\", \"duration_seconds\": 10.43}, {\"source_id\": \"P01\", \"fact_id\": \"F03\", \"narration\": \"支持导出字幕文件。\", \"subtitle\": \"支持导出字幕文件。\", \"visual\": \"展示字幕文件导出界面。\", \"duration_seconds\": 9.64}]}",
+        "reason": "估算引用素材的精简脚本"
+      },
+      "result": {
+        "ok": true,
+        "script_id": "665f792b5d30e215e564233f8868d7eeba66742880dd2b73ae143347754e5217",
+        "scenes": [
+          {
+            "scene": 1,
+            "source_id": "P01",
+            "fact_id": "F01",
+            "requested_seconds": 9.93,
+            "minimum_seconds": 2.3,
+            "long_enough": true
+          },
+          {
+            "scene": 2,
+            "source_id": "P01",
+            "fact_id": "F02",
+            "requested_seconds": 10.43,
+            "minimum_seconds": 2.8,
+            "long_enough": true
+          },
+          {
+            "scene": 3,
+            "source_id": "P01",
+            "fact_id": "F03",
+            "requested_seconds": 9.64,
+            "minimum_seconds": 2.0,
+            "long_enough": true
+          }
+        ],
+        "total_seconds": 30.0,
+        "target_seconds": 30.0,
+        "minimum_target_seconds": 24.0,
+        "duration_tolerance": 0.2,
+        "over_by_seconds": 0.0,
+        "short_by_seconds": 0.0,
+        "within_target": true,
+        "estimate_method": "旁白按每秒 4 个字估算下限，镜头按填写时长精确求和"
+      },
+      "decision_basis": "估算引用素材的精简脚本",
+      "next_action": "check_rules",
+      "next_action_relation": "execution_order_only"
+    },
+    {
+      "step": 4,
+      "tool": "check_rules",
+      "arguments": {
+        "script_json": "{\"title\": \"字幕功能介绍\", \"scenes\": [{\"source_id\": \"P01\", \"fact_id\": \"F01\", \"narration\": \"支持为视频添加字幕。\", \"subtitle\": \"支持为视频添加字幕。\", \"visual\": \"展示字幕编辑界面。\", \"duration_seconds\": 9.93}, {\"source_id\": \"P01\", \"fact_id\": \"F02\", \"narration\": \"支持调整字幕的字体样式。\", \"subtitle\": \"支持调整字幕的字体样式。\", \"visual\": \"展示字体样式设置界面。\", \"duration_seconds\": 10.43}, {\"source_id\": \"P01\", \"fact_id\": \"F03\", \"narration\": \"支持导出字幕文件。\", \"subtitle\": \"支持导出字幕文件。\", \"visual\": \"展示字幕文件导出界面。\", \"duration_seconds\": 9.64}]}",
+        "reason": "检查素材和品牌规则"
+      },
+      "result": {
+        "ok": true,
+        "script_id": "665f792b5d30e215e564233f8868d7eeba66742880dd2b73ae143347754e5217",
+        "passed": true,
+        "violations": [],
+        "citations": [
+          {
+            "scene": 1,
+            "source_id": "P01",
+            "fact_id": "F01",
+            "source_text": "支持为视频添加字幕。"
+          },
+          {
+            "scene": 2,
+            "source_id": "P01",
+            "fact_id": "F02",
+            "source_text": "支持调整字幕的字体样式。"
+          },
+          {
+            "scene": 3,
+            "source_id": "P01",
+            "fact_id": "F03",
+            "source_text": "支持导出字幕文件。"
+          }
+        ],
+        "missing_information": [],
+        "scope": "逐句严格匹配已检索素材，检查主题事实类别和禁用词"
+      },
+      "decision_basis": "检查素材和品牌规则",
+      "next_action": "finalize_script",
+      "next_action_relation": "execution_order_only"
+    },
+    {
+      "step": 5,
+      "tool": "finalize_script",
+      "arguments": {
+        "script_json": "{\"title\": \"字幕功能介绍\", \"scenes\": [{\"source_id\": \"P01\", \"fact_id\": \"F01\", \"narration\": \"支持为视频添加字幕。\", \"subtitle\": \"支持为视频添加字幕。\", \"visual\": \"展示字幕编辑界面。\", \"duration_seconds\": 9.93}, {\"source_id\": \"P01\", \"fact_id\": \"F02\", \"narration\": \"支持调整字幕的字体样式。\", \"subtitle\": \"支持调整字幕的字体样式。\", \"visual\": \"展示字体样式设置界面。\", \"duration_seconds\": 10.43}, {\"source_id\": \"P01\", \"fact_id\": \"F03\", \"narration\": \"支持导出字幕文件。\", \"subtitle\": \"支持导出字幕文件。\", \"visual\": \"展示字幕文件导出界面。\", \"duration_seconds\": 9.64}]}",
+        "reason": "提交已经通过两项检查的脚本"
+      },
+      "result": {
+        "ok": true,
+        "script_id": "665f792b5d30e215e564233f8868d7eeba66742880dd2b73ae143347754e5217",
+        "message": "已提交通过检查的可编辑脚本"
+      },
+      "decision_basis": "提交已经通过两项检查的脚本",
+      "next_action": "finish",
+      "next_action_relation": "terminal"
+    }
+  ]
+}

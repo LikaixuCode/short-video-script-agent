@@ -1,5 +1,8 @@
 import json
 import os
+import math
+import re
+from decimal import Decimal, ROUND_DOWN
 
 from .business import ScriptTools
 
@@ -8,15 +11,33 @@ def run_mock(service: ScriptTools) -> dict:
     """固定决策序列只用于离线验证流程，不证明真实模型能力。"""
     terminal = {"status": "completed", "source": "scripted_mock", "reason": "scripted_finish"}
     found = service.call("search_materials", {"query": service.request.topic, "reason": "检索主题素材"})
-    if not found["ok"] or not found["materials"]:
+    if found["ok"] and not found["materials"]:
+        matching = service._topic_analysis()["materials"]
+        if matching and matching[0].search_terms:
+            found = service.call("search_materials", {"query": matching[0].search_terms[0], "reason": "按已识别的主题概念改写检索"})
+    if not found["ok"] or not found["materials"] or found["missing_information"]:
         return service.output(terminal, "mock")
     material = found["materials"][0]
     if service.request.initial_script:
         first = json.dumps(service.request.initial_script, ensure_ascii=False)
         service.call("estimate_duration", {"script_json": first, "reason": "先检查用户提供的初稿"})
-    fact = material["facts"][0]
-    minimum = max(service.rules.minimum_scene_seconds, len(fact["text"].strip("。")) / service.rules.narration_characters_per_second)
-    script = {"title": material["title"], "scenes": [{"source_id": material["id"], "fact_id": fact["id"], "narration": fact["text"], "subtitle": fact["text"], "visual": fact["visual"], "duration_seconds": max(3, minimum)}]}
+    selected = []
+    minimums = []
+    required = set(found["required_aspects"])
+    for fact in material["facts"]:
+        spoken = len(re.sub(r"[\s\W_]", "", fact["text"], flags=re.UNICODE))
+        minimum = max(service.rules.minimum_scene_seconds, math.ceil(spoken / service.rules.narration_characters_per_second * 10) / 10)
+        if required.intersection(fact["aspects"]) and sum(minimums) + minimum <= service.request.target_seconds:
+            selected.append(fact)
+            minimums.append(minimum)
+    if not selected:
+        return service.output(terminal, "mock")
+    # Distribute remaining seconds after each scene's speaking-time minimum.
+    remaining = Decimal(str(service.request.target_seconds)) - sum((Decimal(str(value)) for value in minimums), Decimal(0))
+    per_scene = (remaining / len(selected)).quantize(Decimal("0.01"), rounding=ROUND_DOWN)
+    durations = [Decimal(str(value)) + per_scene for value in minimums]
+    durations[-1] = Decimal(str(service.request.target_seconds)) - sum(durations[:-1], Decimal(0))
+    script = {"title": material["title"], "scenes": [{"source_id": material["id"], "fact_id": fact["id"], "narration": fact["text"], "subtitle": fact["text"], "visual": fact["visual"], "duration_seconds": float(duration)} for fact, duration in zip(selected, durations)]}
     script_json = json.dumps(script, ensure_ascii=False)
     estimate = service.call("estimate_duration", {"script_json": script_json, "reason": "估算引用素材的精简脚本"})
     if not estimate["ok"] or not estimate["within_target"]:
@@ -66,12 +87,14 @@ async def run_glm(service: ScriptTools, max_turns: int = 12) -> dict:
         model=os.environ.get("GLM_MODEL", "glm-5.3-flash"),
         env={"ANTHROPIC_AUTH_TOKEN": token, "ANTHROPIC_BASE_URL": os.environ.get("ANTHROPIC_BASE_URL", "https://open.bigmodel.cn/api/anthropic"), "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1", "CLAUDE_CODE_MAX_RETRIES": "0", "API_TIMEOUT_MS": "60000"},
         system_prompt=(
-            "你是短视频脚本 Agent。必须先检索本次主题的素材；检索没有结果可改写查询，但不可使用与主题无关素材。"
+            "你是短视频脚本 Agent。第一次检索使用用户主题原文；没有结果可改写查询，但不可使用与主题无关素材。"
             "只能依据检索到的素材构造可编辑脚本。脚本格式为 JSON 对象：title 是素材 title 或'产品功能介绍'；"
             "scenes 为非空数组，每个对象包含 source_id、fact_id、narration、subtitle、visual、duration_seconds。"
             "旁白和字幕须逐字等于该 source_id 的 fact_id 对应 text；visual 须逐字等于该 fact 的 visual，不可编造产品效果或事实。"
-            "根据目标时长选用适当事实、合理编排镜头，每次工具参数 script_json 必须是完整脚本的 JSON 字符串。"
-            "如果用户提供 initial_script，检索素材后应先估算这个初稿，随后根据返回结果调整。"
+            "检索返回 required_aspects 和 missing_information；素材不能覆盖主题时应停止并指出缺口，不可用无关事实代替。"
+            "根据目标时长选用适当事实、合理编排镜头，时长下限为 target_seconds 乘以 (1 - duration_tolerance)，且不得超过目标。"
+            "每次工具参数 script_json 必须是完整脚本的 JSON 字符串。"
+            "如果用户提供 initial_script，检索素材后应先估算这个初稿；若时长符合要求可直接检查该初稿，若不符合则调整后重估。"
             "估算时长和规则检查后，如果超时长、镜头太短或规则不通过，修改脚本并重新执行对应检查；每次修改后两项检查均需重新通过。"
             "满足两项检查才调用 finalize_script；无法解决时直接说明未完成，不要声称成功。"
             "每次工具调用的 reason 写一句简短公开决策依据，不输出内部思维过程。"

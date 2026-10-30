@@ -1,0 +1,207 @@
+{
+  "status": "incomplete",
+  "reason": "no_material",
+  "mode": "glm",
+  "request": {
+    "topic": "咖啡豆烘焙",
+    "audience": "咖啡爱好者",
+    "platform": "短视频平台",
+    "target_seconds": 30.0,
+    "style": "清晰简洁",
+    "duration_tolerance": 0.2,
+    "initial_script": null
+  },
+  "script": null,
+  "previous_submissions": [],
+  "missing_information": [],
+  "risks": [
+    "no_material"
+  ],
+  "terminal": {
+    "status": "completed",
+    "reason": "completed",
+    "turns": 5,
+    "model": "glm-5.3-flash",
+    "reported_models": [
+      "glm-5.3-flash"
+    ],
+    "sdk_events": [
+      {
+        "type": "tool_request",
+        "tool_use_id": "call_3846f3e20c104cad95403d03",
+        "message_id": "msg_20261031002719d83140efc6de457e",
+        "tool": "mcp__video__search_materials",
+        "arguments": {
+          "query": "咖啡豆烘焙",
+          "reason": "按用户主题原文首次检索素材"
+        }
+      },
+      {
+        "type": "tool_result",
+        "tool_use_id": "call_3846f3e20c104cad95403d03",
+        "is_error": null
+      },
+      {
+        "type": "tool_request",
+        "tool_use_id": "call_871a0761816a4fb3a6b94664",
+        "message_id": "msg_2026103100272270ae99ce3a0445e9",
+        "tool": "mcp__video__search_materials",
+        "arguments": {
+          "query": "咖啡烘焙过程",
+          "reason": "原文检索无结果，改写查询扩展素材范围"
+        }
+      },
+      {
+        "type": "tool_result",
+        "tool_use_id": "call_871a0761816a4fb3a6b94664",
+        "is_error": null
+      },
+      {
+        "type": "tool_request",
+        "tool_use_id": "call_b0fdbeafe1d54a59bdf80448",
+        "message_id": "msg_20261031002726aeda4fa742334855",
+        "tool": "mcp__video__search_materials",
+        "arguments": {
+          "query": "咖啡豆",
+          "reason": "继续改写查询，尝试更宽泛的咖啡豆素材"
+        }
+      },
+      {
+        "type": "tool_result",
+        "tool_use_id": "call_b0fdbeafe1d54a59bdf80448",
+        "is_error": null
+      },
+      {
+        "type": "tool_request",
+        "tool_use_id": "call_1645e5ddaa5b46e8999d3324",
+        "message_id": "msg_202610310027336ea39160cc154cd3",
+        "tool": "mcp__video__search_materials",
+        "arguments": {
+          "query": "咖啡制作",
+          "reason": "多次改写均无结果，最后尝试咖啡制作类素材"
+        }
+      },
+      {
+        "type": "tool_result",
+        "tool_use_id": "call_1645e5ddaa5b46e8999d3324",
+        "is_error": null
+      }
+    ],
+    "tool_calls_executed": 4,
+    "max_tool_calls": 16
+  },
+  "trace": [
+    {
+      "step": 1,
+      "tool": "search_materials",
+      "arguments": {
+        "query": "咖啡豆烘焙",
+        "reason": "按用户主题原文首次检索素材"
+      },
+      "result": {
+        "ok": true,
+        "query": "咖啡豆烘焙",
+        "materials": [],
+        "count": 0,
+        "required_aspects": [
+          "feature"
+        ],
+        "missing_information": [
+          {
+            "concept": "unknown",
+            "aspect": "咖啡豆烘焙"
+          }
+        ]
+      },
+      "decision_basis": "按用户主题原文首次检索素材",
+      "model_message_id": "msg_20261031002719d83140efc6de457e",
+      "tool_use_id": "call_3846f3e20c104cad95403d03",
+      "next_action": "search_materials",
+      "next_action_relation": "different_model_message"
+    },
+    {
+      "step": 2,
+      "tool": "search_materials",
+      "arguments": {
+        "query": "咖啡烘焙过程",
+        "reason": "原文检索无结果，改写查询扩展素材范围"
+      },
+      "result": {
+        "ok": true,
+        "query": "咖啡烘焙过程",
+        "materials": [],
+        "count": 0,
+        "required_aspects": [
+          "feature"
+        ],
+        "missing_information": [
+          {
+            "concept": "unknown",
+            "aspect": "咖啡豆烘焙"
+          }
+        ]
+      },
+      "decision_basis": "原文检索无结果，改写查询扩展素材范围",
+      "model_message_id": "msg_2026103100272270ae99ce3a0445e9",
+      "tool_use_id": "call_871a0761816a4fb3a6b94664",
+      "next_action": "search_materials",
+      "next_action_relation": "different_model_message"
+    },
+    {
+      "step": 3,
+      "tool": "search_materials",
+      "arguments": {
+        "query": "咖啡豆",
+        "reason": "继续改写查询，尝试更宽泛的咖啡豆素材"
+      },
+      "result": {
+        "ok": true,
+        "query": "咖啡豆",
+        "materials": [],
+        "count": 0,
+        "required_aspects": [
+          "feature"
+        ],
+        "missing_information": [
+          {
+            "concept": "unknown",
+            "aspect": "咖啡豆烘焙"
+          }
+        ]
+      },
+      "decision_basis": "继续改写查询，尝试更宽泛的咖啡豆素材",
+      "model_message_id": "msg_20261031002726aeda4fa742334855",
+      "tool_use_id": "call_b0fdbeafe1d54a59bdf80448",
+      "next_action": "search_materials",
+      "next_action_relation": "different_model_message"
+    },
+    {
+      "step": 4,
+      "tool": "search_materials",
+      "arguments": {
+        "query": "咖啡制作",
+        "reason": "多次改写均无结果，最后尝试咖啡制作类素材"
+      },
+      "result": {
+        "ok": true,
+        "query": "咖啡制作",
+        "materials": [],
+        "count": 0,
+        "required_aspects": [
+          "feature"
+        ],
+        "missing_information": [
+          {
+            "concept": "unknown",
+            "aspect": "咖啡豆烘焙"
+          }
+        ]
+      },
+      "decision_basis": "多次改写均无结果，最后尝试咖啡制作类素材",
+      "model_message_id": "msg_202610310027336ea39160cc154cd3",
+      "tool_use_id": "call_1645e5ddaa5b46e8999d3324",
+      "next_action": "finish",
+      "next_action_relation": "terminal"
+    }
+  ]
+}
